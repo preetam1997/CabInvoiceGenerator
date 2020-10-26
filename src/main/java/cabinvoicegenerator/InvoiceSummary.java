@@ -2,14 +2,14 @@ package cabinvoicegenerator;
 
 public class InvoiceSummary {
 
-	private int numberOfRides;
-	private double totalFare;
-	private double averageFarePerRide;
+	public int numberOfRides;
+	public double totalFare;
+	public double averageFarePerRide;
 
 	public InvoiceSummary(int numberOfRides, double totalFare) {
 		this.numberOfRides = numberOfRides;
 		this.totalFare = totalFare;
-		this.averageFarePerRide = this.totalFare/this.numberOfRides;
+		this.averageFarePerRide = this.totalFare / this.numberOfRides;
 	}
 
 	@Override
@@ -42,5 +42,5 @@ public class InvoiceSummary {
 			return false;
 		return true;
 	}
-	
+
 }

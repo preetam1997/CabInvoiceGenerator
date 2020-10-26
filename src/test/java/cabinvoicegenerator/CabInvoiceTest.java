@@ -36,16 +36,25 @@ public class CabInvoiceTest {
 		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30);
 		assertEquals(expectedInvoiceSummary, summary);
 	}
-	
+
 	@Test
 	public void givenUserIdAndRide_ShouldReturnInvoiceSummary() {
 		String userId = "a@b.com";
 		Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
-		invoiceService.addRides(userId,rides);
-		InvoiceSummary summary =  invoiceService.getInvoiceSummary(userId);
+		invoiceService.addRides(userId, rides);
+		InvoiceSummary summary = invoiceService.getInvoiceSummary(userId);
 		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30);
 		assertEquals(expectedInvoiceSummary, summary);
 	}
 
-	
+	@Test
+	public void givenUserIdAndRide_BasedOnPremiumOrNormal_ShouldReturnInvoiceSummary() {
+		String userId = "a@b.com";
+		Ride[] rides = { new Ride("Premium", 2.0, 5), new Ride("Normal", 1.0, 5) };
+		invoiceService.addRides(userId, rides);
+		InvoiceSummary summary = invoiceService.getGenericInvoiceSummary(userId);
+		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 55);
+		assertEquals(expectedInvoiceSummary, summary);
+	}
+
 }
